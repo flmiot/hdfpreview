@@ -67,7 +67,7 @@ class Dataset(object):
         for ind, file in enumerate(self.files):
             if ind == 0:
                 continue
-                
+
             with h5py.File(file, 'r') as file:
                 shape[0] += file[path].shape[0]
 
@@ -78,5 +78,6 @@ class Dataset(object):
             with h5py.File(file, 'r') as file:
                 d = file[path]
                 d.read_direct(data, None, np.s_[index : index + d.shape[0]])
+                index += d.shape[0]
 
         return data
