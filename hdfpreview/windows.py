@@ -19,7 +19,13 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     @QtCore.pyqtSlot()
     def on_actionPreviewDataSource_triggered(self, *args, **kwargs):
-        hdfpreview.app.quit()
+        try:
+            currentItem = self.treeWidget.currentItem()
+            path = currentItem.toolTip(0)
+            data = hdfpreview.data.getData(path)
+            self.central_plot.displayData(data, path)
+        except:
+            self.statusbar.showMessage("Error: No valid data source selected!")
 
 
     @QtCore.pyqtSlot()
@@ -35,14 +41,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         # Update the data source QTreeWidget
         self.treeWidget.clear()
-        d = hdfpreview.data.get_data_tree()
-        items = []
-        for key in d.keys():
-            item = QtGui.QTreeWidgetItem(self.treeWidget)
-            item.setText(0, key)
-            items.append(item)
-        self.treeWidget.addTopLevelItems(items)
-
+        data_sources = hdfpreview.data.get_data_tree()
+        self.fillTreeWidget(data_sources, None)
 
 
     @QtCore.pyqtSlot()
@@ -51,7 +51,19 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.aboutDialog.show()
 
 
-
+    def fillTreeWidget(self, dictionary, rootItem = None):
+        if rootItem is None:
+            rootItem = QtGui.QTreeWidgetItem(self.treeWidget)
+            rootItem.setText(0, "Select a data source...")
+            self.fillTreeWidget(dictionary, rootItem)
+        else:
+            for key, value in dictionary.items():
+                item = QtGui.QTreeWidgetItem(rootItem)
+                item.setText(0, key)
+                if isinstance(value, dict):
+                    self.fillTreeWidget(value, item)
+                else:
+                    item.setToolTip(0, value)
 
 
 class AboutDialog(Ui_Dialog, QtGui.QDialog):

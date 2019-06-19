@@ -2,11 +2,12 @@
 
 # Form implementation generated from reading ui file 'development/about.ui'
 #
-# Created by: PyQt5 UI code generator 5.9.2
+# Created by: PyQt5 UI code generator 5.12.1
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -62,5 +63,6 @@ class Ui_Dialog(object):
         self.label.setText(_translate("Dialog", "HDF5 preview version 0.1"))
         self.label_2.setText(_translate("Dialog", "All icons licensed under Attribution-NoDerivs 3.0 Unported (CC BY-ND 3.0) "))
         self.label_3.setText(_translate("Dialog", "https://icons8.de/"))
+
 
 import resources_rc

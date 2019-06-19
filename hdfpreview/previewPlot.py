@@ -9,5 +9,29 @@ class previewPlot(QtGui.QWidget):
     def setupUi(self):
         layout = QtGui.QVBoxLayout()
         self.imageView = pg.ImageView()
+        self.plotWidget = pg.PlotWidget()
+        self.imageView.hide()
+        self.plotWidget.hide()
+        self.plotWidget.getPlotItem().addLegend()
         layout.addWidget(self.imageView)
+        layout.addWidget(self.plotWidget)
         self.setLayout(layout)
+
+
+    def displayData(self, data, name):
+        shape = data.shape
+        if len(shape) == 1:
+            pi = self.plotWidget.getPlotItem()
+            items = pi.listDataItems()
+            for item in items:
+                pi.legend.removeItem(item.name())
+                pi.removeItem(item)
+            self.imageView.hide()
+            self.plotWidget.show()
+            self.plotWidget.enableAutoRange()
+            self.plotWidget.plot(data, name = name)
+
+        else:
+            self.imageView.show()
+            self.plotWidget.hide()
+            self.imageView.setImage(data)

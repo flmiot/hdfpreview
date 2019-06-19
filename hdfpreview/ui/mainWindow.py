@@ -2,11 +2,12 @@
 
 # Form implementation generated from reading ui file 'development/mainWindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.9.2
+# Created by: PyQt5 UI code generator 5.12.1
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -258,6 +259,7 @@ class Ui_MainWindow(object):
         self.actionLoadFiles.setToolTip(_translate("MainWindow", "Load HDF5 files"))
         self.actionLoadFiles.setShortcut(_translate("MainWindow", "Ctrl+O"))
         self.actionAbout_Hdf5_preview.setText(_translate("MainWindow", "About Hdf5 preview"))
+
 
 from hdfpreview.previewPlot import previewPlot
 import resources_rc

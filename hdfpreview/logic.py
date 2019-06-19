@@ -30,16 +30,14 @@ class Dataset(object):
             self.add_entry(self.keys, item.name, item.name)
 
 
-
-
     def add_node(self, dictionary, path):
         segments = path.split('/')
         if len(segments) == 1:
             dictionary[segments[0]] = dict()
         else:
-            key     = segments.pop(0)
+            key = segments.pop(0)
             if key == '':
-                key     = segments.pop(0)
+                key = segments.pop(0)
             path    = '/'.join(segments)
             if not key in dictionary.keys():
                 dictionary[key] = dict()
@@ -51,10 +49,34 @@ class Dataset(object):
         if len(segments) == 1:
             dictionary[segments[0]] = value
         else:
-            key     = segments.pop(0)
+            key = segments.pop(0)
             if key == '':
-                key     = segments.pop(0)
+                key = segments.pop(0)
             path    = '/'.join(segments)
             if not key in dictionary.keys():
                 dictionary[key] = dict()
             self.add_entry(dictionary[key], path, value)
+
+
+    def getData(self, path):
+        with h5py.File(self.files[0], 'r') as file:
+            shape = list()
+            shape.extend(file[path].shape)
+            dtype = file[path].dtype
+
+        for ind, file in enumerate(self.files):
+            if ind == 0:
+                continue
+                
+            with h5py.File(file, 'r') as file:
+                shape[0] += file[path].shape[0]
+
+        data = np.empty(shape, dtype)
+
+        index = 0
+        for file in self.files:
+            with h5py.File(file, 'r') as file:
+                d = file[path]
+                d.read_direct(data, None, np.s_[index : index + d.shape[0]])
+
+        return data
