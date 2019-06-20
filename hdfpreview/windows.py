@@ -33,7 +33,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         # Read HDF5 filenames
         files = QtGui.QFileDialog.getOpenFileNames(self, 'Select HDF5 files')[0]
-        hdfpreview.data = Dataset(files)
+        hdfpreview.data = Dataset(sorted(files))
 
         # Update the file QListWidget
         self.listWidget.clear()

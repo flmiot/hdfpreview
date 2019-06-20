@@ -29,7 +29,11 @@ class previewPlot(QtGui.QWidget):
             self.imageView.hide()
             self.plotWidget.show()
             self.plotWidget.enableAutoRange()
-            self.plotWidget.plot(data, name = name)
+            self.plotWidget.plot(data,
+                name = name,
+                symbolSize=5,
+                symbolBrush=(255,0,0),
+                symbolPen='w')
 
         else:
             self.imageView.show()
