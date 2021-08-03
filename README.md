@@ -1,7 +1,7 @@
 # Python application with a QT GUI (example project)
 
 This application makes use of the PyQT5 framework via the PyQtGraph package. To run this application, you will need to have PyQtGraph installed in your Python enviroment. 
-With Anaconda, PyQtGraph can be easily done like this:
+With Anaconda this can be easily done like this:
 
 ```
 conda install -c anaconda pyqtgraph
