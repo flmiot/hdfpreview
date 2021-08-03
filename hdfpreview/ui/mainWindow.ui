@@ -14,8 +14,8 @@
    <string>HDF5 preview</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
-    <normaloff>:/icons/resources/icons8-fuchs-48.png</normaloff>:/icons/resources/icons8-fuchs-48.png</iconset>
+   <iconset>
+    <normaloff>resources/icons8-fuchs-48.png</normaloff>resources/icons8-fuchs-48.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -571,8 +571,8 @@
   </widget>
   <action name="actionExit">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/icons/resources/icons8-löschen-52.png</normaloff>:/icons/resources/icons8-löschen-52.png</iconset>
+    <iconset>
+     <normaloff>resources/icons8-löschen-52.png</normaloff>resources/icons8-löschen-52.png</iconset>
    </property>
    <property name="text">
     <string>Exit</string>
@@ -583,8 +583,8 @@
   </action>
   <action name="actionPreviewDataSource">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/icons/resources/icons8-suche-104.png</normaloff>:/icons/resources/icons8-suche-104.png</iconset>
+    <iconset>
+     <normaloff>resources/icons8-suche-104.png</normaloff>resources/icons8-suche-104.png</iconset>
    </property>
    <property name="text">
     <string>PreviewDataSource</string>
@@ -595,8 +595,8 @@
   </action>
   <action name="actionLoadFiles">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/icons/resources/icons8-neue-datei-80.png</normaloff>:/icons/resources/icons8-neue-datei-80.png</iconset>
+    <iconset>
+     <normaloff>resources/icons8-neue-datei-80.png</normaloff>resources/icons8-neue-datei-80.png</iconset>
    </property>
    <property name="text">
     <string>LoadFiles</string>
@@ -610,8 +610,8 @@
   </action>
   <action name="actionAbout_Hdf5_preview">
    <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/icons/resources/icons8-über-52.png</normaloff>:/icons/resources/icons8-über-52.png</iconset>
+    <iconset>
+     <normaloff>resources/icons8-über-52.png</normaloff>resources/icons8-über-52.png</iconset>
    </property>
    <property name="text">
     <string>About Hdf5 preview</string>

@@ -20,8 +20,8 @@
    <string>About HDF5 preview</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
-    <normaloff>:/icons/resources/icons8-über-52.png</normaloff>:/icons/resources/icons8-über-52.png</iconset>
+   <iconset>
+    <normaloff>resources/icons8-über-52.png</normaloff>resources/icons8-über-52.png</iconset>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <property name="sizeConstraint">
@@ -39,7 +39,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="resources.qrc">:/icons/resources/icons8-fuchs-48.png</pixmap>
+      <pixmap>resources/icons8-fuchs-48.png</pixmap>
      </property>
     </widget>
    </item>

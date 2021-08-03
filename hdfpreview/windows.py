@@ -3,13 +3,12 @@ HDFpreview GUI implementation module. Implements the MainWindow and AboutDialog
 widgets.
 """
 
-from pyqtgraph.Qt import QtGui, QtCore
-from hdfpreview.ui.mainWindow import Ui_MainWindow
-from hdfpreview.ui.about import Ui_Dialog
+import os
+from pyqtgraph.Qt import QtGui, QtCore, uic
 from hdfpreview.logic import Dataset
 import hdfpreview
 
-class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
+class MainWindow(QtGui.QMainWindow):
 
     """
     Derives from Ui_MainWindow and implements the HDFpreview MainWindow
@@ -18,7 +17,22 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     def __init__(self, *args, **kwargs):
         super(self.__class__, self).__init__(*args, **kwargs)
-        self.setupUi(self)
+
+        # --------- UIC method ---------
+        # Use the uic module to dynamically load the *.ui (QT user interface) files
+        # We do not want a hard-coded path here, so we derive the location of the *.ui files
+        # relative to the location of this file
+        dirname = os.path.dirname(__file__)
+        uic.loadUi(os.path.join(dirname, 'ui/mainWindow.ui'), self)
+
+        # --------- pyuic5 method ---------
+        # There is another way of using the QT ui files in Python. See e.g.
+        # https://stackoverflow.com/questions/52471705/why-in-pyqt5-should-i-use-pyuic5-and-not-uic-loaduimy-ui
+        # I choose here to use the UIC method, because I do not have to retranslate the UI files
+        # everytime I change something in the GUI. If speed and user experience is critical (and if
+        # the GUI is mature enough) pyuic5 could be a better option.
+
+        # self.setupUi(self)
         self.show()
         self.aboutDialog = AboutDialog(self)
 
@@ -78,7 +92,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         which will act as root for all entries in *dictionary*. Call this method
         recursivly with rootItem = ..., to create a nested treeItem structure.
         """
-        
+
         if rootItem is None:
             rootItem = QtGui.QTreeWidgetItem(self.treeWidget)
             rootItem.setText(0, "Select a data source...")
@@ -93,7 +107,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                     item.setToolTip(0, value)
 
 
-class AboutDialog(Ui_Dialog, QtGui.QDialog):
+class AboutDialog(QtGui.QDialog):
     def __init__(self, *args, **kwargs):
         super(self.__class__, self).__init__(*args, **kwargs)
-        self.setupUi(self)
+        dirname = os.path.dirname(__file__)
+        uic.loadUi(os.path.join(dirname, 'ui/about.ui'), self)
