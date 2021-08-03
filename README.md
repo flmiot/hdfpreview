@@ -7,6 +7,8 @@ With Anaconda this can be easily done like this:
 conda install -c anaconda pyqtgraph
 ```
 
+This specific example is a very simple HDF5 file inspector. The functionality includes inspection of the group & dataset structure and visualization of 1D and 2D data.
+
 ## Quickstart
 - *.ui files: Edit this files to your liking with the QT Designer program. This files provide the layout of the GUI. QT Designer is not officially available anymore, 
 but a kind individual is still providing binaries for windows. A quick google search will help. 
